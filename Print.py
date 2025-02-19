@@ -9,7 +9,7 @@ def create_download_link(val, filename):
 	b64 = base64.b64encode(val)  # val looks like b'...'
 	return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="{filename}.pdf">Download file</a>'
 
-def create_pdf_task1(figs,name,title,FileName,placeholder,Is,Us,Bs,logo1='figures/FCUP.jpg',logo2='figures/FEUP.jpg'):
+def create_pdf_task1(figs,name,title,FileName,placeholder,U0,Is,I0,Us,Bs,logo1='figures/FCUP.jpg',logo2='figures/FEUP.jpg'):
 	border = 'LRTB'*0
 	pdf = FPDF()
 	pdf.set_margins(25,18)
@@ -28,7 +28,7 @@ def create_pdf_task1(figs,name,title,FileName,placeholder,Is,Us,Bs,logo1='figure
 	pdf.set_font('Arial', 'B' , 12)
 	pdf.cell(45, 10,'Experimental results',border=border,align='L',ln=1)
 	pdf.set_font('Arial', '' , 10)
-	pdf.cell(45, 10,'Varying tube current',border=border,align='L',ln=1)
+	pdf.cell(45, 10,'Varying tube current for a tube voltage of %.2f kV'%U0,border=border,align='L',ln=1)
 	pdf.cell(2, 10,'',border=0,align='L',ln=0)
 	pdf.cell(55, 10,r'I1 (mA): %.2f'%Is[0],border=0,align='L',ln=0)
 	pdf.cell(57, 10,r'I2 (mA): %.2f'%Is[1],border=0,align='L',ln=0)
@@ -39,11 +39,11 @@ def create_pdf_task1(figs,name,title,FileName,placeholder,Is,Us,Bs,logo1='figure
 		
 	pdf.cell(0, 5, '',border=border,align='L',ln=1)
 
-	pdf.cell(45, 10,'Varying tube high voltage',border=border,align='L',ln=1)
+	pdf.cell(45, 10,'Varying tube high voltage for a tube current of %.2f mA'%I0,border=border,align='L',ln=1)
 	pdf.cell(2, 10,'',border=0,align='L',ln=0)
-	pdf.cell(55, 10,r'U1 (kV): %.2f'%Us[0],border=0,align='L',ln=0)
-	pdf.cell(57, 10,r'U2 (kV): %.2f'%Us[1],border=0,align='L',ln=0)
-	pdf.cell(30, 10,r'U3 (kV): %.2f'%Us[2],border=0,align='L',ln=1)
+	pdf.cell(55, 10,r'V1 (kV): %.2f'%Us[0],border=0,align='L',ln=0)
+	pdf.cell(57, 10,r'V2 (kV): %.2f'%Us[1],border=0,align='L',ln=0)
+	pdf.cell(30, 10,r'V3 (kV): %.2f'%Us[2],border=0,align='L',ln=1)
 	with NamedTemporaryFile(delete=False, suffix=".png") as tmpfile:
 		figs[1].savefig(tmpfile.name, bbox_inches='tight')
 		pdf.image(tmpfile.name,w=160,h=0)
@@ -51,13 +51,14 @@ def create_pdf_task1(figs,name,title,FileName,placeholder,Is,Us,Bs,logo1='figure
 	pdf.cell(0, 5, '',border=border,align='L',ln=1)
 
 	pdf.cell(45, 10,'Projection effect',border=border,align='L',ln=1)
-	pdf.cell(2, 10,'',border=0,align='L',ln=0)
-	pdf.cell(55, 10,r'dx (cells): %.2f'%Bs[0],border=0,align='L',ln=0)
-	pdf.cell(57, 10,r'dy (cells): %.2f'%Bs[1],border=0,align='L',ln=0)
-	pdf.cell(30, 10,r'dz (cells): %.2f'%Bs[2],border=0,align='L',ln=1)
+	pdf.cell(140, 10,r'dx (mm): %.2f'%Bs[0],border=0,align='R',ln=1)
+	pdf.cell(140, 10,r'dy (mm): %.2f'%Bs[1],border=0,align='R',ln=1)
+	pdf.cell(140, 10,r'dz (mm): %.2f'%Bs[2],border=0,align='R',ln=1)
+	pdf.cell(140, 10,r'L (mm): %.2f'%Bs[3],border=0,align='R',ln=1)
 	with NamedTemporaryFile(delete=False, suffix=".png") as tmpfile:
 		figs[2].savefig(tmpfile.name, bbox_inches='tight')
-		pdf.image(tmpfile.name,w=160*2/3,h=0)
+		pdf.image(tmpfile.name,y=205,w=160*2/3,h=0)	
+
 
 
 	html = create_download_link(pdf.output(dest="S").encode("latin-1"), FileName)

@@ -13,7 +13,7 @@ from scipy import signal
 from PIL import Image
 
 # -- Set page config
-apptitle = 'Imagiologia Médica'
+apptitle = 'Medical Imaging'
 icon = Image.open("feup_logo.ico")
 st.set_page_config(page_title=apptitle, page_icon=icon )
 

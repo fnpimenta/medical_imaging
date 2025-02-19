@@ -63,7 +63,7 @@ figs = []
 with tabs[0]:
 	st.write("**Experimental setup**:")
 	st.write(r'''
-		1. Set the tube high voltage $\Delta V=35$ kV
+		1. Set the tube high voltage to a fixed value of your choice, $\Delta V=\Delta V_0$ kV
 		2. Set the emission current for values up to 1 mA, $I\in[0,1]$ mA
 		''')
 
@@ -104,6 +104,7 @@ with tabs[0]:
 	st.pyplot(fig)
 	figs.append(fig)
 
+	U0 = st.number_input("$\Delta V_0$ (kV)")
 	Is = []
 	cols = st.columns(3)
 	Is.append(cols[0].number_input("$I_1$ (mA)"))
@@ -114,8 +115,10 @@ with tabs[0]:
 with tabs[1]:	
 	st.write("**Experimental setup**:")
 	st.write(r'''
-		1. Set the tube current $I=1$ mA
-		2. Set the tube current for values up to $\Delta V=$35 kV, $\Delta V\in[15,35]$ kV
+		1. Set the tube current to a fixed value of your choice, $I=I_0$ mA
+		2. Set the tube current for values up to $\Delta V=35$ kV, $\Delta V\in[15,35]$ kV
+		3. Obtain the front view of the wood block
+		4. Obtain the lateral view of the wood block
 		''')
 
 	st.write('**Data Analysis**')
@@ -124,9 +127,9 @@ with tabs[1]:
 
 	cols0 = st.columns(3)
 	file = []
-	file.append(cols0[0].file_uploader("$U_1$",accept_multiple_files=False))
-	file.append(cols0[1].file_uploader("$U_2$",accept_multiple_files=False))
-	file.append(cols0[2].file_uploader("$U_3$",accept_multiple_files=False))
+	file.append(cols0[0].file_uploader("$\Delta V_1$",accept_multiple_files=False))
+	file.append(cols0[1].file_uploader("$\Delta V_2$",accept_multiple_files=False))
+	file.append(cols0[2].file_uploader("$\Delta V_3$",accept_multiple_files=False))
 		
 	error_check = np.zeros(3)
 
@@ -155,11 +158,12 @@ with tabs[1]:
 	st.pyplot(fig)
 	figs.append(fig)
 
+	I0 = st.number_input("$I_0$ (mA)")
 	Us = []
 	cols = st.columns(3)
-	Us.append(cols[0].number_input("$U_1$ (kV)"))
-	Us.append(cols[1].number_input("$U_2$ (kV)"))
-	Us.append(cols[2].number_input("$U_3$ (kV)"))
+	Us.append(cols[0].number_input("$\Delta V_1$ (kV)"))
+	Us.append(cols[1].number_input("$\Delta V_2$ (kV)"))
+	Us.append(cols[2].number_input("$\Delta V_3$ (kV)"))
 
 
 with tabs[2]:	
@@ -212,25 +216,32 @@ with tabs[2]:
 	st.pyplot(fig)
 	figs.append(fig)
 
-	cols = st.columns(3)
+	cols = st.columns(4)
 	Bs = []
-	Bs.append(cols[0].number_input("$\Delta x$ (cells)"))
-	Bs.append(cols[1].number_input("$\Delta y$ (cells)"))
-	Bs.append(cols[2].number_input("$\Delta z$ (cells)"))
-
+	Bs.append(cols[0].number_input("$\Delta x$ (mm)"))
+	Bs.append(cols[1].number_input("$\Delta y$ (mm)"))
+	Bs.append(cols[2].number_input("$\Delta z$ (mm)"))
+	Bs.append(cols[3].number_input("$\Delta \ell$ (mm)"))
+	st.caption(r'For reference, note that the wood block base has approximatelly $53\times 53$ mm$^2$')
 st.write('')
 st.write('**Export report**')
+st.write('After filling in all the tabs above, you can download your report that should be attached as an appendix to the final reports.')
+st.write('Please note that the pdf preview does not work in some browsers, but you should still be able to download the file.')
 
-report_text = st.text_input("Group number",key='g_1_2')
+group_number = st.number_input("Group number",key='g_1_2',min_value=1,max_value=20,value=None)
 exp_c = st.columns([0.25,0.25,0.5])
 export_as_pdf = exp_c[0].button("Generate Report",key='pdf_1_2')
 
 if export_as_pdf:
-	#try:
-	create_pdf_task1(figs,report_text,'Experiment 1: Impact of tube current and tube voltage','Exp1_report',exp_c[1],
-					 Is,Us,Bs)
-	#except:
-	#	st.error('Something went wrong. No file available for the analysis.', icon="⚠️")
+	try:
+		create_pdf_task1(figs,group_number,
+						'Experiment 1: Impact of tube current and tube voltage',
+						'G%.2d_Exp1_report'%group_number,exp_c[1],
+						 U0,Is,
+						 I0,Us,
+						 Bs)
+	except:
+		st.error('Something went wrong. Check that you have filled in the group number.', icon="⚠️")
 
 
 
