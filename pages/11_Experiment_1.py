@@ -32,7 +32,7 @@ PALETTE = [
 
 default_colors = ['tab:blue','tab:orange']
 
-with st.expander('**Theory**',True):
+with st.expander('**Theory**',False):
 	st.write(r'''
 		X-rays can be "observed" on a luminous screen in some materials. 
 
@@ -94,7 +94,7 @@ with tabs[0]:
 			image = Image.open(file[i])
 			#image = cv2.imread(file[0])
 			img_array = np.array(image)
-			ax[i].imshow(img_array,aspect='auto')
+			ax[i].imshow(img_array,aspect='equal')
 		else:
 			ax[i].annotate('No data found',(0.5,0.5),ha='center',xycoords='axes fraction')
 		ax[i].set_xticklabels([])
@@ -148,7 +148,7 @@ with tabs[1]:
 			image = Image.open(file[i])
 			#image = cv2.imread(file[0])
 			img_array = np.array(image)
-			ax[i].imshow(img_array,aspect='auto')
+			ax[i].imshow(img_array,aspect='equal')
 		else:
 			ax[i].annotate('No data found',(0.5,0.5),ha='center',xycoords='axes fraction')
 		ax[i].set_xticklabels([])
@@ -201,13 +201,15 @@ with tabs[2]:
 			image = Image.open(file[i])
 			#image = cv2.imread(file[0])
 			img_array = np.array(image)
-			ax[i].imshow(img_array,aspect='auto')
+			ax[i].imshow(img_array,aspect='equal')
 
 		else:
 			ax[i].annotate('No data found',(0.5,0.5),ha='center',xycoords='axes fraction')
-		
+
 		ax[i].set_xticks(np.arange(0,640,2*64/gridsize))
-		ax[i].set_yticks(np.arange(0,480,2*48/gridsize))
+		ax[i].set_yticks(np.arange(0,640,2*64/gridsize))
+		ax[i].set_xlim(-0.5,639.5)
+		ax[i].set_ylim(479.5,-0.5)
 		ax[i].set_xticklabels('')
 		ax[i].set_yticklabels('')
 		ax[i].grid()
@@ -222,7 +224,7 @@ with tabs[2]:
 	Bs.append(cols[1].number_input("$\Delta y$ (mm)"))
 	Bs.append(cols[2].number_input("$\Delta z$ (mm)"))
 	Bs.append(cols[3].number_input("$\Delta \ell$ (mm)"))
-	st.caption(r'For reference, note that the wood block base has approximatelly $53\times 53$ mm$^2$')
+	st.caption(r'For reference, note that the wood block base has approximatelly $53\times 53$ mm$^2$, while the square on the face as size 10mm')
 st.write('')
 st.write('**Export report**')
 st.write('After filling in all the tabs above, you can download your report that should be attached as an appendix to the final reports.')
