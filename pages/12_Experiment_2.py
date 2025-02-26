@@ -293,12 +293,12 @@ exp_c = st.columns([0.25,0.25,0.5])
 export_as_pdf = exp_c[0].button("Generate Report",key='pdf_1_2')
 
 if export_as_pdf:
-	#try:
-	create_pdf_task2(figs,group_number,
+	try:
+		create_pdf_task2(figs,group_number,
 						'Experiment 2: Measuring attenuation',
 						'G%.2d_Exp2_report'%group_number,exp_c[1],
 						 [I1,I2])
-	#except:
-	#	st.error('Something went wrong. Check that you have filled in the group number.', icon="⚠️")
+	except:
+		st.error('Something went wrong. Check that you have filled in the group number.', icon="⚠️")
 
 
