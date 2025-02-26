@@ -74,7 +74,7 @@ def create_pdf_task1(figs,name,title,FileName,placeholder,U0,Is,I0,Us,Bs,logo1='
 
 	return
 
-def create_pdf_task2(figs,name,title,FileName,placeholder,placeholder_pdf,mu1,mu2,s1,s2,logo1='figures/FCUP.jpg',logo2='figures/FEUP.jpg'):
+def create_pdf_task2(figs,name,title,FileName,placeholder,Is,logo1='figures/FCUP.jpg',logo2='figures/FEUP.jpg'):
 	border = 'LRTB'*0
 	pdf = FPDF()
 	pdf.set_margins(25,18)
@@ -92,25 +92,22 @@ def create_pdf_task2(figs,name,title,FileName,placeholder,placeholder_pdf,mu1,mu
 	pdf.cell(0, 10,'Group number: %s'%name,border=border,align='L',ln=1)
 	pdf.set_font('Arial', 'B' , 12)
 	pdf.cell(45, 10,'Experimental results',border=border,align='L',ln=1)
-	Count = 0
-	for fig in figs:
-		Count += 1
-		with NamedTemporaryFile(delete=False, suffix=".png") as tmpfile:
-			fig.savefig(tmpfile.name, bbox_inches='tight')
-			pdf.cell(45, 10, '',border=border,align='L',ln=1)
-			pdf.image(tmpfile.name,25,60,w=160,h=0)
-	pdf.cell(0, 70, '',border=border,align='L',ln=1)
 	pdf.set_font('Arial', '' , 10)
-	pdf.cell(45, 10,r'Linear attenuation coefficient without filter: %.2f'%mu1,border=border,align='L',ln=0)
-	pdf.cell(115, 10,r'Half-value layer (HVL): %.2f'%s1,border=border,align='R',ln=1)
-	pdf.cell(45, 10,r'Linear attenuation coefficient with filter: %.2f'%mu2,border=border,align='L',ln=0)
-	pdf.cell(115, 10,r'Half-value layer (HVL): %.2f'%s1,border=border,align='R',ln=1)
+	pdf.cell(45, 10,'Impact of the Zirconium filter on the results',border=border,align='L',ln=1)
+	pdf.cell(2, 10,'',border=0,align='L',ln=0)
+	with NamedTemporaryFile(delete=False, suffix=".png") as tmpfile:
+		figs[0].savefig(tmpfile.name, bbox_inches='tight')
+		pdf.image(tmpfile.name,w=160,h=0)
+		
+	pdf.cell(0, 5, '',border=border,align='L',ln=1)
 
-	pdf.cell(45, 10,'',border=border,align='L',ln=1)
-	#for i in range(4):
-	#	pdf.cell(25, 10,r'Student %d:'%(i+1),border=border,align='L',ln=0)
-	#	pdf.cell(135, 10,70*'_',border=border,align='R',ln=1)
-
+	pdf.cell(45, 10,'Attenuation dependence on the atomic number (I1=%.2f mA and I2=%.2f mA)'%(Is[0],Is[1]),border=border,align='L',ln=1)
+	#pdf.cell(55, 10,r'I1 (mA): %.2f'%Is[0],border=0,align='L',ln=1)
+	#pdf.cell(55, 10,r'I2 (mA): %.2f'%Is[1],border=0,align='L',ln=1)
+	#pdf.cell(2, 10,'',border=0,align='L',ln=1)
+	with NamedTemporaryFile(delete=False, suffix=".png") as tmpfile:
+		figs[1].savefig(tmpfile.name, bbox_inches='tight')
+		pdf.image(tmpfile.name,w=160,h=0)
 
 	html = create_download_link(pdf.output(dest="S").encode("latin-1"), FileName)
 	placeholder.markdown(html, unsafe_allow_html=True)
@@ -121,7 +118,6 @@ def create_pdf_task2(figs,name,title,FileName,placeholder,placeholder_pdf,mu1,mu
 	pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="670" height="957" type="application/pdf"></iframe>'
 
 	# Displaying File
-	placeholder_pdf.markdown(pdf_display, unsafe_allow_html=True)
+	st.markdown(pdf_display, unsafe_allow_html=True)
 
 	return
-

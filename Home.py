@@ -50,9 +50,13 @@ with tabs[0]:
         2. X-ray attenuation curves
         3. X-ray beam spectra (Bragg reflection)
         4. Duane-Hunt relation
+        
         5. Study of the photoelectric cross-section
+        
         6. Semiconductor detector with a MCA box
         7. Study of the ionization current
+        8. Moseley's law
+        9. Compton's law
         ''')
 
 with tabs[1]:
