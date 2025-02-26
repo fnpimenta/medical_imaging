@@ -281,6 +281,7 @@ with tabs[1]:
 	plt.show()
 	st.pyplot(fig)
 	figs.append(fig)
+	st.caption(r'It was assumed that the background radiation corresponds to 0.243 (s$^{-1}$) and the target thickness to be $d=0.05$ cm')
 
 
 st.write('')
