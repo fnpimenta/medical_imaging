@@ -224,7 +224,7 @@ with tabs[2]:
 	Bs.append(cols[1].number_input("$\Delta y$ (mm)"))
 	Bs.append(cols[2].number_input("$\Delta z$ (mm)"))
 	Bs.append(cols[3].number_input("$\Delta \ell$ (mm)"))
-	st.caption(r'For reference, note that the wood block base has approximatelly $53\times 53$ mm$^2$, while the square on the face as size 10mm')
+	st.caption(r'For reference, note that the wood block base has approximatelly $53\times 53$ mm$^2$, while the square on the face has size 15mm')
 st.write('')
 st.write('**Export report**')
 st.write('After filling in all the tabs above, you can download your report that should be attached as an appendix to the final reports.')
