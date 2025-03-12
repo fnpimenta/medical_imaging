@@ -287,7 +287,7 @@ if export_as_pdf:
 	try:
 		create_pdf_task3(figs,group_number,
 						'Experiment 3: X-ray beam spectra',
-						'G%.2d_Exp2_report'%group_number,exp_c[1])
+						'G%.2d_Exp3_report'%group_number,exp_c[1])
 	except:
 		st.error('Something went wrong. Check that you have filled in the group number.', icon="⚠️")
 
