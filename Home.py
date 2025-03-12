@@ -48,15 +48,12 @@ with tabs[0]:
     st.write('''
         1. Observation of x-ray imagens
         2. X-ray attenuation curves
-        3. X-ray beam spectra (Bragg reflection)
-        4. Duane-Hunt relation
-        
-        5. Study of the photoelectric cross-section
-        
-        6. Semiconductor detector with a MCA box
-        7. Study of the ionization current
-        8. Moseley's law
-        9. Compton's law
+        3. X-ray beam spectra and Duane-Hunt relation
+        4. Study of the photoelectric cross-section
+        5. Semiconductor detector with a MCA box
+        6. Study of the ionization current
+        7. Moseley's law
+        8. Compton's law
         ''')
 
 with tabs[1]:

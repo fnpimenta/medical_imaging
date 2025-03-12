@@ -12,7 +12,7 @@ from PIL import Image
 from Print import * 
 
 # -- Set page config
-apptitle = 'Medical Imaging - Experiment 7'
+apptitle = 'Medical Imaging - Experiment 8'
 icon = Image.open('feup_logo.ico')
 st.set_page_config(page_title=apptitle, page_icon=icon)
-st.title('Study of the ionization current')
+st.title("Moseley's law")

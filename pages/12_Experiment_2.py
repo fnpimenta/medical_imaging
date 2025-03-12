@@ -76,7 +76,7 @@ with st.expander('**Theory**',False):
 
 		st.pyplot(fig)
 	except:
-		st.error('Something went wrong. Check the file format or try reloading it.', icon="⚠️")
+		st.error('Something went wrong.', icon="⚠️")
 
 tabs = st.tabs(['**Target thickness impact**' , '**Target material impact**' ])
 figs = []

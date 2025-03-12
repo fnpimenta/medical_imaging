@@ -121,3 +121,49 @@ def create_pdf_task2(figs,name,title,FileName,placeholder,Is,logo1='figures/FCUP
 	st.markdown(pdf_display, unsafe_allow_html=True)
 
 	return
+
+def create_pdf_task3(figs,name,title,FileName,placeholder,logo1='figures/FCUP.jpg',logo2='figures/FEUP.jpg'):
+	border = 'LRTB'*0
+	pdf = FPDF()
+	pdf.set_margins(25,18)
+	pdf.add_page()
+	pdf.set_font('Arial', 'B', 18)
+	pdf.cell(45, 10, '',align='L',ln=0)
+	pdf.cell(0, 10, 'Medical Imaging',align='L',ln=1)
+	pdf.image(logo1,25,20,40)
+	pdf.image(logo2,23,30,40)
+
+	pdf.set_font('Arial',  '',12)
+	pdf.cell(45, 10, '',border=border,align='L',ln=0)
+	pdf.cell(0, 10, title,border=border,align='L',ln=1)
+	pdf.cell(45, 10, '',border=border,align='L',ln=0)
+	pdf.cell(0, 10,'Group number: %s'%name,border=border,align='L',ln=1)
+	pdf.set_font('Arial', 'B' , 12)
+	pdf.cell(45, 10,'Experimental results',border=border,align='L',ln=1)
+	pdf.set_font('Arial', '' , 10)
+	pdf.cell(45, 10,'Impact of the tube viltage and current on the X-ray beam spectra',border=border,align='L',ln=1)
+	pdf.cell(2, 10,'',border=0,align='L',ln=0)
+	with NamedTemporaryFile(delete=False, suffix=".png") as tmpfile:
+		figs[0].savefig(tmpfile.name, bbox_inches='tight')
+		pdf.image(tmpfile.name,w=160,h=0)
+		
+	pdf.cell(0, 5, '',border=border,align='L',ln=1)
+
+	pdf.cell(45, 10,'Duane-Hunt law experimental validation',border=border,align='L',ln=1)
+	
+	with NamedTemporaryFile(delete=False, suffix=".png") as tmpfile:
+		figs[1].savefig(tmpfile.name, bbox_inches='tight')
+		pdf.image(tmpfile.name,w=160,h=0)
+
+	html = create_download_link(pdf.output(dest="S").encode("latin-1"), FileName)
+	placeholder.markdown(html, unsafe_allow_html=True)
+
+	base64_pdf = base64.b64encode(pdf.output(dest="S").encode("latin-1")).decode('utf-8')
+
+	# Embedding PDF in HTML
+	pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="670" height="957" type="application/pdf"></iframe>'
+
+	# Displaying File
+	st.markdown(pdf_display, unsafe_allow_html=True)
+
+	return

@@ -12,7 +12,7 @@ from PIL import Image
 from Print import * 
 
 # -- Set page config
-apptitle = 'Medical Imaging - Experiment 5'
+apptitle = 'Medical Imaging - Experiment 6'
 icon = Image.open('feup_logo.ico')
 st.set_page_config(page_title=apptitle, page_icon=icon)
-st.title('Study of the photoelectric cross-section')
+st.title('Semiconductor deteter with a MCA box')
