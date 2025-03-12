@@ -141,7 +141,7 @@ def create_pdf_task3(figs,name,title,FileName,placeholder,logo1='figures/FCUP.jp
 	pdf.set_font('Arial', 'B' , 12)
 	pdf.cell(45, 10,'Experimental results',border=border,align='L',ln=1)
 	pdf.set_font('Arial', '' , 10)
-	pdf.cell(45, 10,'Impact of the tube viltage and current on the X-ray beam spectra',border=border,align='L',ln=1)
+	pdf.cell(45, 10,'Impact of the tube voltage and current on the X-ray beam spectra',border=border,align='L',ln=1)
 	pdf.cell(2, 10,'',border=0,align='L',ln=0)
 	with NamedTemporaryFile(delete=False, suffix=".png") as tmpfile:
 		figs[0].savefig(tmpfile.name, bbox_inches='tight')

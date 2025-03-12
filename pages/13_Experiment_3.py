@@ -118,7 +118,6 @@ with tabs[0]:
 	ax = []
 	ax.append(plt.subplot(gs[0,0]))
 
-	labels = ['No filter','Zr filter','Cu filter']
 	for i in range(n_files):
 		if error_check[i]:
 			betas = np.arange(b_mins[i],b_max+d_beta,d_beta)
@@ -131,7 +130,7 @@ with tabs[0]:
 			y = data.iloc[:,0]
 			cs = CubicSpline(betas, y)
 
-			ax[0].plot(lambdas,y,'.',color=default_colors[i],clip_on=False,label='V=%.1f kV; I=%.2f'%(evs[i],Is[i]))
+			ax[0].plot(lambdas,y,'.',color=default_colors[i],clip_on=False,label='V=%.1f kV; I=%.2f mA'%(evs[i],Is[i]))
 			ax[0].plot(full_lambdas,cs(full_betas),'--',color=default_colors[i],lw=1,clip_on=False)
 
 	if sum(error_check)==0:
