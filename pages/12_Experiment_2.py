@@ -29,7 +29,7 @@ PALETTE = [
 	"#808495",]
 default_colors = ['tab:blue','tab:orange']
 
-with st.expander('**Theory**',False):
+with st.expander('**Theory**',True):
 	st.write(r'''
 		The intensity, $I$, of light traveling into an absorbing body is governed by the differential equation:
 		$$

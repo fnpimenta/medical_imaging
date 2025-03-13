@@ -32,7 +32,7 @@ PALETTE = [
 
 default_colors = ['tab:blue','tab:orange']
 
-with st.expander('**Theory**',False):
+with st.expander('**Theory**',True):
 	st.write(r'''
 		X-rays can be "observed" on a luminous screen in some materials. 
 

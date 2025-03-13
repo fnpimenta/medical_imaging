@@ -64,18 +64,17 @@ with tabs[0]:
 	st.write("**X-ray apparatus preparation**")
 	st.write(r'''
 		1. Mount the collimator and install the Geiger counter on the respective support
-		2. Install the target with varying thickness in the goniometer
-		2. Set the tube high voltage $\Delta V=35$ kV
+		2. Install the NaCl crystal on the support attached to the goniometer
+		2. Set the tube high voltage $\Delta V=30$ kV
 		3. Set the emission current $I=0.80$ mA
 		4. Set the aparatus mode to **COUPLED**
-		5. Set the angular position $\Delta\beta=0º$
-		6. Set the measuring time $\Delta t=5$ s
+		5. Set the measuring time $\Delta t=5$ s
 		''')	
 
 	st.write("**Making the experiment**")
 	st.write(r'''
 		1. Start the measurement with the **SCAN** key
-		2. Repeat the measurement for $\beta\in[3º,8º]$ with an angular step of 0.1º
+		2. Repeat the measurement for $\beta\in[3º,8º]$ with an angular step of 0.1º (you may tune the lower bound of the angular positions based on the tube high voltage used)
 		3. Repeat the measurements with a different current
 		4. Repeat the measurements with a different tube voltage''')
 
@@ -160,19 +159,18 @@ with tabs[1]:
 	st.write("**X-ray apparatus preparation**")
 	st.write(r'''
 		1. Mount the collimator and install the Geiger counter on the respective support
-		2. Install the target with varying thickness in the goniometer
-		2. Set the tube high voltage $\Delta V=35$ kV
+		2. Install the NaCl crystal on the support attached to the goniometer
+		2. Set the tube high voltage $\Delta V=30$ kV
 		3. Set the emission current $I=0.80$ mA
 		4. Set the aparatus mode to **COUPLED**
-		5. Set the angular position $\Delta\beta=0º$
-		6. Set the measuring time $\Delta t=5$ s
+		5. Set the measuring time $\Delta t=5$ s
 		''')	
 
 	st.write("**Making the experiment**")
 	st.write(r'''
 		1. Start the measurement with the **SCAN** key
-		2. Repeat the measurement for $\beta\in[3º,8º]$ with an angular step of 0.1º
-		4. Repeat the measurements with different tube voltages''')
+		2. Repeat the measurement for $\beta\in[3º,8º]$ with an angular step of 0.1º (you may tune the lower bound of the angular positions based on the tube high voltage used)
+		3. Repeat the measurements with different tube voltages''')
 
 	st.write('**Data Analysis**')
 
@@ -250,7 +248,7 @@ with tabs[1]:
 
 	if sum(error_check)>1:
 		coeff = np.polyfit(1/evs[error_check>0],l_mins[error_check>0], 1)
-		ax[1].plot([0,1/min(evs)],[np.poly1d(coeff)(0),np.poly1d(coeff)(1/min(evs))],'--k',
+		ax[1].plot([0,1/min(evs[error_check>0])],[np.poly1d(coeff)(0),np.poly1d(coeff)(1/min(evs[error_check>0]))],'--k',
 					lw=1,ms=1,clip_on=True,label='$\lambda_{min}=%.2f+%.2f\cdot\dfrac{1}{V}$'%(coeff[1],coeff[0]))
 		
 	if sum(error_check)==0:
