@@ -205,8 +205,8 @@ with tabs[0]:
 
 	ax[0].set_ylabel('R (counts per second)' )
 	ax[1].set_ylabel('Transmittance (%)' )
-	ax[2].set_ylabel(r'$\sigma_C$ $\times10^{21}$ (cm$^2$)' )
-	ax[3].set_ylabel(r'$\ln\left[\sigma_C\times10^{21}\right]$')
+	ax[2].set_ylabel(r'$\sigma_{PE}$ $\times10^{21}$ (cm$^2$)' )
+	ax[3].set_ylabel(r'$\ln\left[\sigma_{PE}\times10^{21}\right]$')
 
 	ax[0].set_ylim(0,)
 	ax[1].set_xlim(ax[0].get_xlim())
