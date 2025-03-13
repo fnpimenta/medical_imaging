@@ -51,9 +51,19 @@ with st.expander('**Theory**',True):
 		where $n$ is a positive integer that defines the diffraction order, $d$ is the lattice spacing and $\theta$ is the glancing angle, measured with respect to the crystal planes.
 		By probing using different glancing angles, a Geiger-Mueller counter can be used to characterise the different wavelengths, or, equivalently, the energy distribution of the beam, since:
 		$$
-			\lambda = \dfrac{c}{f} = \dfrac{h\cdot c}{E_\gamma} \approx \dfrac{1239.8 (\text{nm/eV})}{E_\gamma}
+			\lambda = \dfrac{c}{f} = \dfrac{h\cdot c}{E_\gamma}
 		$$
-		where the last expression is valid for wavelentghs in nanometers (nm) and energies in eV.
+		where $h$ is the Planck constant and $c$ is the speed of light in the vacuum.
+		
+		Finally, note that the Duane-Hunt law defines the minimum wavelength (or maximum frequency) for a given tube voltage, $\Delta V$, as:
+		$$
+			\lambda_{min} = \dfrac{h\cdot c}{e\cdot\Delta V}
+		$$
+		Using the minimum wavelength obtained for different tube voltages you should obtain a linear relation against $1/\Delta V$, with slope $m$ given by:
+		$$
+			m = \dfrac{h\cdot c}{e}
+		$$
+		where $e$ is the elementary electron charge. By assuming $c=2.9979\times10^8$ m/s and $e=1.6022\times10^{-19}$ C you can use the result above to constrain the Planck's constant value.
 		''')
 	st.write('')
 
