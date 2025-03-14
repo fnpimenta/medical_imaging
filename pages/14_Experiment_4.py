@@ -212,9 +212,9 @@ with tabs[0]:
 	ax[1].set_xlim(ax[0].get_xlim())
 	ax[2].set_xlim(ax[0].get_xlim())
 	
-	ax[0].set_xlabel('Wavelength (nm)')
-	ax[1].set_xlabel('Wavelength (nm)')
-	ax[2].set_xlabel('Wavelength (nm)')
+	ax[0].set_xlabel('Wavelength (pm)')
+	ax[1].set_xlabel('Wavelength (pm)')
+	ax[2].set_xlabel('Wavelength (pm)')
 	ax[3].set_xlabel(r'$\ln\lambda$' )
 	ax[0].legend(frameon=False,ncols=4,markerscale=1,bbox_to_anchor=(1.1,1.1),loc='lower center')
 	ax[3].legend(frameon=False)

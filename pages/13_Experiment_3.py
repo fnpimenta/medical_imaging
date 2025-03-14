@@ -268,7 +268,7 @@ with tabs[1]:
 	#ax[0].set_title('Measured values')
 	#ax[0].set_xlim()
 	ax[0].set_ylim(0,2000)
-	ax[0].set_xlabel('Wavelength (nm)')
+	ax[0].set_xlabel('Wavelength (pm)')
 	ax[0].set_ylabel('$R$ (counts per second)' )
 
 	#ax[0].set_title('Measured values')
