@@ -183,8 +183,8 @@ with tabs[0]:
 				lambda_filter = lambda_min_filter & lambda_max_filter
 
 				cs = CubicSpline(lambdas[lambda_min_filter], transmittance[lambda_min_filter])
-				ax[1].plot(energies[lambda_min_filter],100*transmittance[lambda_min_filter],'.',color=default_colors[i],clip_on=False,label=labels[i])		
-				#ax[1].plot(full_lambdas[full_lambdas>(lambda_min+1)],100*cs(full_lambdas[full_lambdas>(lambda_min+1)]),'--',color=default_colors[i],lw=1,clip_on=False)
+				ax[1].plot(lambdas[lambda_min_filter],100*transmittance[lambda_min_filter],'.',color=default_colors[i],clip_on=False,label=labels[i])		
+				ax[1].plot(full_lambdas[full_lambdas>(lambda_min+1)],100*cs(full_lambdas[full_lambdas>(lambda_min+1)]),'--',color=default_colors[i],lw=1,clip_on=False)
 
 				tau = -(np.log(transmittance)/(rhos[i-1]*xs[i-1]) + 0.2)*As[i-1]/N_A
 				ax[2].plot(lambdas[lambda_min_filter],1e21*tau[lambda_min_filter],'.',color=default_colors[i],clip_on=False,label=labels[i])		
@@ -209,11 +209,11 @@ with tabs[0]:
 	ax[3].set_ylabel(r'$\ln\left[\sigma_{PE}\times10^{21}\right]$')
 
 	ax[0].set_ylim(0,)
-	#ax[1].set_xlim(ax[0].get_xlim())
+	ax[1].set_xlim(ax[0].get_xlim())
 	ax[2].set_xlim(ax[0].get_xlim())
 	
 	ax[0].set_xlabel('Wavelength (pm)')
-	ax[1].set_xlabel('Energy (kev)')
+	ax[1].set_xlabel('Wavelength (pm)')
 	ax[2].set_xlabel('Wavelength (pm)')
 	ax[3].set_xlabel(r'$\ln\lambda$' )
 	ax[0].legend(frameon=False,ncols=4,markerscale=1,bbox_to_anchor=(1.1,1.1),loc='lower center')
