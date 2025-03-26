@@ -52,20 +52,3 @@ with tabs[0]:
         4. Study of the photoelectric cross-section
         5. Study of the ionization current
         ''')
-
-with tabs[1]:
-    st.write("")
-    #st.write('''<div style="text-align: justify">
-    #            \nThis course will focus on the numerical modelling of wind turbines. 
-    #            However, and in order to provide to the attendees with~the basic concepts regardingof wind energy, 
-    #            fundamental for a correct implementation and interpretation of numerical models, it also includes modules aimed at exposing the basic theoretical concepts that govern the operation of the most common wind turbines. 
-    #            At the end of the course participants should:</div>''',unsafe_allow_html=True)
-    #st.write("- know the main components of a wind turbine")
-    #st.write("- understand the mechanism for generating electricity from wind;")
-    #st.write("- know how to generate realistic wind fields in order to represent the wind loads;")
-    #st.write("- understand the structural behaviour of foundation, tower and blades and know how to model the main components;")
-    #st.write("- understand the aerodynamic behaviour of the rotor and know how to model it;")
-    #st.write("- know the rotor control mechanisms and know how to model them in a simplified way;")
-    #st.write("- know the operating principles of floating platforms for offshore wind turbines and their basic modelling;")
-    #st.write("- know wind turbine operating regimes and singular events and know how to model them;")
-    #st.write("- know how to interpret numerical modelling results.")
