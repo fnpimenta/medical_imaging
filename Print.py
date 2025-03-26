@@ -105,8 +105,7 @@ def create_pdf_task2(figs,name,title,FileName,placeholder,Is,logo1='figures/FCUP
 	with NamedTemporaryFile(delete=False, suffix=".png") as tmpfile:
 		figs[1].savefig(tmpfile.name, bbox_inches='tight')
 		pdf.image(tmpfile.name,w=160,h=0)
-
-	pdf.cell(0, 100, '',border=border,align='L',ln=1)
+	pdf.add_page()
 	pdf.cell(45, 10,'Impact of the Zirconium filter on the results',border=border,align='L',ln=1)
 	pdf.cell(2, 10,'',border=0,align='L',ln=0)
 	with NamedTemporaryFile(delete=False, suffix=".png") as tmpfile:
