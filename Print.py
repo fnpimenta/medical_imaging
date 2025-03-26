@@ -93,21 +93,32 @@ def create_pdf_task2(figs,name,title,FileName,placeholder,Is,logo1='figures/FCUP
 	pdf.set_font('Arial', 'B' , 12)
 	pdf.cell(45, 10,'Experimental results',border=border,align='L',ln=1)
 	pdf.set_font('Arial', '' , 10)
-	pdf.cell(45, 10,'Impact of the Zirconium filter on the results',border=border,align='L',ln=1)
+	
+	pdf.cell(45, 10,'Impact of the tube current on the results',border=border,align='L',ln=1)
 	pdf.cell(2, 10,'',border=0,align='L',ln=0)
 	with NamedTemporaryFile(delete=False, suffix=".png") as tmpfile:
 		figs[0].savefig(tmpfile.name, bbox_inches='tight')
 		pdf.image(tmpfile.name,w=160,h=0)
 		
 	pdf.cell(0, 5, '',border=border,align='L',ln=1)
-
-	pdf.cell(45, 10,'Attenuation dependence on the atomic number (I1=%.2f mA and I2=%.2f mA)'%(Is[0],Is[1]),border=border,align='L',ln=1)
-	#pdf.cell(55, 10,r'I1 (mA): %.2f'%Is[0],border=0,align='L',ln=1)
-	#pdf.cell(55, 10,r'I2 (mA): %.2f'%Is[1],border=0,align='L',ln=1)
-	#pdf.cell(2, 10,'',border=0,align='L',ln=1)
+	pdf.cell(45, 10,'Impact of the tube high-voltage on the results',border=border,align='L',ln=1)
 	with NamedTemporaryFile(delete=False, suffix=".png") as tmpfile:
 		figs[1].savefig(tmpfile.name, bbox_inches='tight')
 		pdf.image(tmpfile.name,w=160,h=0)
+
+	pdf.cell(0, 100, '',border=border,align='L',ln=1)
+	pdf.cell(45, 10,'Impact of the Zirconium filter on the results',border=border,align='L',ln=1)
+	pdf.cell(2, 10,'',border=0,align='L',ln=0)
+	with NamedTemporaryFile(delete=False, suffix=".png") as tmpfile:
+		figs[2].savefig(tmpfile.name, bbox_inches='tight')
+		pdf.image(tmpfile.name,w=160,h=0)
+		
+	pdf.cell(0, 5, '',border=border,align='L',ln=1)
+	pdf.cell(45, 10,'Attenuation dependence on the atomic number (I1=%.2f mA and I2=%.2f mA)'%(Is[0],Is[1]),border=border,align='L',ln=1)
+	with NamedTemporaryFile(delete=False, suffix=".png") as tmpfile:
+		figs[3].savefig(tmpfile.name, bbox_inches='tight')
+		pdf.image(tmpfile.name,w=160,h=0)
+
 
 	html = create_download_link(pdf.output(dest="S").encode("latin-1"), FileName)
 	placeholder.markdown(html, unsafe_allow_html=True)
