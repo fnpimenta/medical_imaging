@@ -39,7 +39,7 @@ st.title('''Medical Imaging
             \nFrancisco Pimenta, fnpimenta@fe.up.pt''')
 
 
-tabs = st.tabs(['**Experiments**' , '**Evaluation**' ])
+tabs = st.tabs(['**Experiments**'  ])
 
 with tabs[0]:
     st.markdown("""<div style="text-align: justify">
@@ -50,10 +50,7 @@ with tabs[0]:
         2. X-ray attenuation curves
         3. X-ray beam spectra and Duane-Hunt relation
         4. Study of the photoelectric cross-section
-        5. Semiconductor detector with a MCA box
-        6. Study of the ionization current
-        7. Moseley's law
-        8. Compton's law
+        5. Study of the ionization current
         ''')
 
 with tabs[1]:
