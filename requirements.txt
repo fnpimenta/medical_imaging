@@ -6,4 +6,4 @@ pdf2image
 seaborn
 rainflow
 opencv-contrib-python-headless
-openxyl
+openpyxl
